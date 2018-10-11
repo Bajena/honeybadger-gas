@@ -49,9 +49,9 @@ class Honeybadger {
       // Please use relevant values for the name, url, and version keys of the
       // `notifier` key that point back to your code/package.
       notifier: {
-        name: 'Honeybadger Notifier',
-        url: 'https://github.com/honeybadger-io/honeybadger-ruby',
-        version: '1.0.0'
+        name: 'Honeybadger GAS Notifier',
+        url: 'https://github.com/Bajena/honeybadger-gas',
+        version: '0.0.1'
       },
       // Here's where you're exception's class, message tags and backtrace go.
       // The `class` and `message` attributes are what make up the error's "title" that we display in the UI.
