@@ -3,10 +3,21 @@ import { ErrorData } from './error-data';
 
 export class Honeybadger {
   apiKey: string;
-  context: Object;
+  private contextData: Object;
+  private UrlFetchApp: GoogleAppsScript.URL_Fetch.UrlFetchApp;
 
-  constructor(apiKey: string) {
+  constructor(apiKey: string, services: any) {
     this.apiKey = apiKey;
+    this.UrlFetchApp = services.UrlFetchApp;
+    this.contextData = {};
+  }
+
+  context(data: Object): void {
+    this.contextData = { ...this.contextData, ...data };
+  }
+
+  getContext(): Object {
+    return this.contextData;
   }
 
   notify(error: any): void {
@@ -23,7 +34,7 @@ export class Honeybadger {
 
     console.log('Posting with options', options);
     console.log('Payload', payload);
-    const resp = UrlFetchApp.fetch('https://api.honeybadger.io/v1/notices', options);
+    const resp = this.UrlFetchApp.fetch('https://api.honeybadger.io/v1/notices', options);
     console.log(resp);
   }
 
@@ -54,10 +65,7 @@ export class Honeybadger {
       request: {
         // We display this data on the error's details page.
         // `user_id` and `user_email` are special keys that are used to generate the "affected users" list in the UI.
-        context: {
-          user_id: 123,
-          user_email: 'test@example.com'
-        },
+        context: this.contextData,
 
         // These are displayed under "params" on the error detail page
         params: {

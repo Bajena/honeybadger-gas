@@ -16,3 +16,7 @@ global.throwError = (): void => {
 };
 
 global.Honeybadger = Honeybadger;
+
+global.initialize = (apiKey: string): void {
+  return new Honeybadger(apiKey);
+}
