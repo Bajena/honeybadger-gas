@@ -2,21 +2,28 @@ import { Honeybadger } from './honeybadger';
 
 declare var global: any;
 
-global.notify = (): void => {
-  const h = new Honeybadger('180ba7cb');
-  try {
-    global.throwError();
-  } catch (e) {
-    h.notify(e);
-  }
+// global.notify = (): void => {
+//   const h = global.init('478e6ff5');
+//   h.context({
+//     user_id: Session.getTemporaryActiveUserKey(),
+//     user_locale: Session.getActiveUserLocale(),
+//     user_email: Session.getActiveUser().getEmail()
+//   });
+//   try {
+//     global.throwError();
+//   } catch (e) {
+//     h.notify(e);
+//   }
+// };
+
+// global.throwError = (): void => {
+//   throw new Error('xxx');
+// };
+
+// global.Honeybadger = Honeybadger;
+
+global.init = (apiKey: string): Honeybadger => {
+  return new Honeybadger(apiKey, {
+    UrlFetchApp
+  });
 };
-
-global.throwError = (): void => {
-  throw new Error('xxx');
-};
-
-global.Honeybadger = Honeybadger;
-
-global.initialize = (apiKey: string): void {
-  return new Honeybadger(apiKey);
-}

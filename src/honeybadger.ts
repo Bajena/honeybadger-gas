@@ -68,19 +68,15 @@ export class Honeybadger {
         context: this.contextData,
 
         // These are displayed under "params" on the error detail page
-        params: {
-          // TODO: tutaj parametry wywolania skryptu
-        }
+        params: {}
       },
       server: {
         // Your environment name
-        environment_name: 'development', // TODO: tutaj nazwa deploymentu
-
+        // environment_name: 'development', // TODO: tutaj nazwa deploymentu
         // Optional: Git sha for the deployed version of the code, for linking to GitHub, Gitlab, and BitBucket
-        revision: '920201a', // TODO: Tutaj numer wersji
-
+        // revision: '920201a', // TODO: Tutaj numer wersji
         // Optional: ID of the process that raised the error
-        pid: 1138 // TODO: Tutaj wstaw execution id
+        // pid: 1138 // TODO: Tutaj wstaw execution id
       }
     };
   }

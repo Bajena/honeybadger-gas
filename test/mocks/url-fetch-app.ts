@@ -26,8 +26,15 @@ class HTTPResponseMock implements UrlFetch.HTTPResponse {
 }
 
 export class UrlFetchAppMock implements UrlFetch.UrlFetchApp {
+  lastFetchParams: UrlFetch.URLFetchRequestOptions;
+  lastFetchPayload: any;
+
   fetch(url: string, params?: UrlFetch.URLFetchRequestOptions): UrlFetch.HTTPResponse {
-    console.log('FETCH', url);
+    console.log('FETCH', url, params);
+    this.lastFetchParams = params;
+    if (params.payload) {
+      this.lastFetchPayload = JSON.parse(params.payload.toString());
+    }
     return new HTTPResponseMock();
   }
 
@@ -35,6 +42,6 @@ export class UrlFetchAppMock implements UrlFetch.UrlFetchApp {
     return [];
   }
   getRequest(url: string, params?: UrlFetch.URLFetchRequestOptions): Object {
-    return {}
+    return {};
   }
 }

@@ -24,4 +24,22 @@ describe('Honeybadger', () => {
       });
     });
   });
+
+  describe('notify', () => {
+    it('sends context', () => {
+      const urlFetchAppMock = new UrlFetchAppMock();
+      const service = new Honeybadger('xxx', {
+        UrlFetchApp: urlFetchAppMock
+      });
+      service.context({
+        abc: 'def'
+      });
+
+      service.notify('xxx');
+
+      expect(urlFetchAppMock.lastFetchPayload.request.context).toEqual({
+        abc: 'def'
+      });
+    });
+  });
 });
