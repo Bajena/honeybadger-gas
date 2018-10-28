@@ -3,12 +3,26 @@ import { ErrorData } from './error-data';
 
 export class Honeybadger {
   apiKey: string;
+  lockToNotify: boolean;
   private contextData: Object;
   private UrlFetchApp: GoogleAppsScript.URL_Fetch.UrlFetchApp;
+  private LockService: any;
 
-  constructor(apiKey: string, services: any) {
+  constructor(
+    {
+      apiKey,
+      lockToNotify = true
+    }: {
+      apiKey: string;
+      lockToNotify?: boolean;
+    },
+    services: any
+  ) {
     this.apiKey = apiKey;
+    this.lockToNotify = lockToNotify;
+
     this.UrlFetchApp = services.UrlFetchApp;
+    this.LockService = services.LockService;
     this.contextData = {};
   }
 
@@ -34,7 +48,21 @@ export class Honeybadger {
 
     console.log('Posting with options', options);
     console.log('Payload', payload);
+
+    this.post(options);
+  }
+
+  post(options): void {
+    const lock = this.LockService.getScriptLock();
+    if (this.lockToNotify) {
+      lock.tryLock(1000);
+    }
+
     const resp = this.UrlFetchApp.fetch('https://api.honeybadger.io/v1/notices', options);
+    if (this.lockToNotify) {
+      lock.releaseLock();
+    }
+
     console.log(resp);
   }
 
