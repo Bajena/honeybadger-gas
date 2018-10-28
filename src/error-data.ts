@@ -1,12 +1,3 @@
-import { UtilitiesMock } from '../test/mocks/utilities';
-
-let Utils;
-if (typeof Utilities === 'undefined') {
-  Utils = UtilitiesMock;
-} else {
-  Utils = Utilities;
-}
-
 interface IError {
   message: string;
   stack: string;
@@ -36,11 +27,6 @@ export class ErrorData {
       throw `Unknown error type: ${error}`;
     }
 
-    this.fingerprint = Utils.computeDigest(
-      Utils.DigestAlgorithm.MD5,
-      this.stack || this.message
-    ).toString();
-
-    console.log(this.fingerprint);
+    this.fingerprint = this.stack || this.message;
   }
 }

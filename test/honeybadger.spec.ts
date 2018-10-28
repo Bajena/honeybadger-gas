@@ -41,5 +41,23 @@ describe('Honeybadger', () => {
         abc: 'def'
       });
     });
+
+    it('allows overriding error fingerprint', () => {
+      const urlFetchAppMock = new UrlFetchAppMock();
+      const service = new Honeybadger('xxx', {
+        UrlFetchApp: urlFetchAppMock
+      });
+      service.context({
+        abc: 'def'
+      });
+
+      service.notify('xxx');
+
+      expect(urlFetchAppMock.lastFetchPayload.error.fingerprint).toEqual('xxx');
+
+      service.notify('xxx', { fingerprint: 'ffff' });
+
+      expect(urlFetchAppMock.lastFetchPayload.error.fingerprint).toEqual('ffff');
+    });
   });
 });
