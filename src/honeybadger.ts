@@ -58,7 +58,8 @@ export class Honeybadger {
       error: {
         class: errorData.name,
         message: errorData.message,
-        backtrace: backtrace
+        backtrace: backtrace,
+        fingerprint: errorData.fingerprint
       },
 
       // `request` contains information about the HTTP request that caused this exception.
