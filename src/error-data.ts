@@ -12,6 +12,7 @@ export class ErrorData {
   message: string;
   stack: string;
   name: string;
+  fingerprint: string;
 
   constructor(error: any) {
     if (isError(error)) {
@@ -25,5 +26,7 @@ export class ErrorData {
     } else {
       throw `Unknown error type: ${error}`;
     }
+
+    this.fingerprint = this.stack || this.message;
   }
 }

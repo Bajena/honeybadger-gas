@@ -7,6 +7,7 @@ describe('ErrorData', () => {
 
       expect(ed.name).toEqual('Error');
       expect(ed.message).toEqual('xxx');
+      expect(ed.fingerprint).toEqual('xxx');
     });
   });
 
@@ -18,6 +19,7 @@ describe('ErrorData', () => {
       expect(ed.name).toEqual('Error');
       expect(ed.message).toEqual('xxx');
       expect(ed.stack).toEqual(expect.stringContaining('at Object.'));
+      expect(ed.fingerprint).toEqual(ed.stack);
     });
   });
 });

@@ -2,7 +2,7 @@ import { Honeybadger } from './honeybadger';
 
 declare var global: any;
 
-// global.notify = (): void => {
+// global.test = (): void => {
 //   const h = global.init('478e6ff5');
 //   h.context({
 //     user_id: Session.getTemporaryActiveUserKey(),
@@ -20,10 +20,24 @@ declare var global: any;
 //   throw new Error('xxx');
 // };
 
-// global.Honeybadger = Honeybadger;
+global.notify = (error: any): void => {
+  try {
+    global._honeybadger.notify(error);
+  } catch (hbError) {
+    console.log('Failed to notify in Honeybadger', hbError);
+  }
+};
+
+global.context = (data: any): void => {
+  global._honeybadger.context(data);
+};
 
 global.init = (apiKey: string): Honeybadger => {
-  return new Honeybadger(apiKey, {
+  const honeybadger = new Honeybadger(apiKey, {
     UrlFetchApp
   });
+
+  global._honeybadger = honeybadger;
+
+  return honeybadger;
 };

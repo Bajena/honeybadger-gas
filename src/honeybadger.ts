@@ -20,9 +20,9 @@ export class Honeybadger {
     return this.contextData;
   }
 
-  notify(error: any): void {
+  notify(error: any, additionalOptions: any = {}): void {
     const ed = new ErrorData(error);
-    const payload = this.buildPayload(ed);
+    const payload = this.buildPayload(ed, additionalOptions);
     const options = {
       contentType: 'application/json',
       payload: JSON.stringify(payload),
@@ -38,7 +38,7 @@ export class Honeybadger {
     console.log(resp);
   }
 
-  private buildPayload(errorData: ErrorData): Object {
+  private buildPayload(errorData: ErrorData, additionalOptions: any): Object {
     const backtrace = this.buildBacktrace(errorData);
 
     return {
@@ -58,7 +58,8 @@ export class Honeybadger {
       error: {
         class: errorData.name,
         message: errorData.message,
-        backtrace: backtrace
+        backtrace: backtrace,
+        fingerprint: additionalOptions.fingerprint || errorData.fingerprint
       },
 
       // `request` contains information about the HTTP request that caused this exception.
