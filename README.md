@@ -1,6 +1,11 @@
 # Honeybadger GAS
 A Honeybadger client for Google Apps Scripts.
 
+## Usage
+
+1. Add the following library to your script: `M4hoogS1IHPlDGE3VXDWwuTI3yRUM8Pyy`
+2. Add `"https://api.honeybadger.io/"` to `urlFetchWhitelist` key in `appscript.json` file
+
 ## Tech Stack
 - [google/clasp](https://github.com/google/clasp)
 - [webpack](https://webpack.js.org/)
