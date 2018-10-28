@@ -1,4 +1,6 @@
 # Honeybadger for Google Apps Scripts
+[![CircleCI](https://circleci.com/gh/Bajena/honeybadger-gas/tree/master.svg?style=svg)](https://circleci.com/gh/Bajena/honeybadger-gas/tree/master)
+
 A [Honeybadger](https://www.honeybadger.io/) client for Google Apps Scripts.
 
 ## Setup
