@@ -10,7 +10,7 @@ A [Honeybadger](https://www.honeybadger.io/) client for Google Apps Scripts.
 This library is already published as an Apps Script, making it easy to include in your project. To add it to your script, do the following in the Apps Script code editor:
 
 Click on the menu item "Resources > Libraries..."
-In the "Find a Library" text box, enter the script ID M4hoogS1IHPlDGE3VXDWwuTI3yRUM8Pyy and click the "Select" button.
+In the "Find a Library" text box, enter the script ID `M4hoogS1IHPlDGE3VXDWwuTI3yRUM8Pyy` and click the "Select" button.
 Choose a version in the dropdown box (usually best to pick the latest version).
 Click the "Save" button.
 
