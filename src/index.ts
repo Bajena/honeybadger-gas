@@ -35,7 +35,8 @@ global.context = (data: any): void => {
 global.init = (config: any): Honeybadger => {
   const honeybadger = new Honeybadger(config, {
     LockService,
-    UrlFetchApp
+    UrlFetchApp,
+    Utilities
   });
 
   global._honeybadger = honeybadger;

@@ -4,24 +4,30 @@ import { ErrorData } from './error-data';
 export class Honeybadger {
   apiKey: string;
   lockToNotify: boolean;
+  lockTime: number;
   private contextData: Object;
   private UrlFetchApp: GoogleAppsScript.URL_Fetch.UrlFetchApp;
   private LockService: any;
+  private Utilities: any;
 
   constructor(
     {
       apiKey,
-      lockToNotify = true
+      lockToNotify = true,
+      lockTime = 3000
     }: {
       apiKey: string;
       lockToNotify?: boolean;
+      lockTime?: number;
     },
     services: any
   ) {
     this.apiKey = apiKey;
     this.lockToNotify = lockToNotify;
+    this.lockTime = lockTime;
 
     this.UrlFetchApp = services.UrlFetchApp;
+    this.Utilities = services.Utilities;
     this.LockService = services.LockService;
     this.contextData = {};
   }
@@ -55,12 +61,19 @@ export class Honeybadger {
   post(options): void {
     const lock = this.LockService.getScriptLock();
     if (this.lockToNotify) {
-      lock.tryLock(1000);
+      console.log('HB: Acquiring lock');
+      lock.tryLock(5000);
+      console.log('HB: acquired');
     }
 
+    console.log('HB: Sending error notice');
     const resp = this.UrlFetchApp.fetch('https://api.honeybadger.io/v1/notices', options);
+
     if (this.lockToNotify) {
+      console.log('HB: Sleeping for 3s...');
+      this.Utilities.sleep(this.lockTime);
       lock.releaseLock();
+      console.log('HB: Released lock');
     }
 
     console.log(resp);
