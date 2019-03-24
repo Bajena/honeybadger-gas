@@ -30,9 +30,13 @@ If you're whitelisting URLs accessible by UrlFetchApp make sure you add `"https:
 
 ```javascript
 Honeybadger.configure({
-  apiKey: '[ YOUR API KEY HERE ]'
+  apiKey: '[ YOUR API KEY HERE ]',
+  environment: 'production'
 });
 ```
+
+- `apiKey` - Your Honeybadger API key.
+- `environment` - environment name to be sent to Honeybadger. If not passed it'll be sent as 'production'.
 
 ### Send error notifications to Honeybadger
 
