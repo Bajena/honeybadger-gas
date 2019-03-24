@@ -1,2 +1,2 @@
 //File updated automatically, don't change
-export const VERSION = '11'
+export const VERSION = '11';
