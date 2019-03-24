@@ -2,20 +2,26 @@ import { StacktraceParser, StacktraceEntry } from './stacktrace-parser';
 import { ErrorData } from './error-data';
 import { VERSION } from './version';
 
+const DEFAULT_ENVIRONMENT = 'production';
+
 export class Honeybadger {
   apiKey: string;
+  environment: string;
   private contextData: Object;
   private UrlFetchApp: GoogleAppsScript.URL_Fetch.UrlFetchApp;
 
   constructor(
     {
-      apiKey
+      apiKey,
+      environment
     }: {
       apiKey: string;
+      environment?: string;
     },
     services: any
   ) {
     this.apiKey = apiKey;
+    this.environment = environment || DEFAULT_ENVIRONMENT;
 
     this.UrlFetchApp = services.UrlFetchApp;
     this.contextData = {};
@@ -87,12 +93,7 @@ export class Honeybadger {
         params: {}
       },
       server: {
-        // Your environment name
-        // environment_name: 'development', // TODO: tutaj nazwa deploymentu
-        // Optional: Git sha for the deployed version of the code, for linking to GitHub, Gitlab, and BitBucket
-        // revision: '920201a', // TODO: Tutaj numer wersji
-        // Optional: ID of the process that raised the error
-        // pid: 1138 // TODO: Tutaj wstaw execution id
+        environment_name: this.environment
       }
     };
   }
