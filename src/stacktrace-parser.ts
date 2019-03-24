@@ -25,7 +25,7 @@ export class StacktraceParser {
     const entry = new StacktraceEntry();
     entry.fileName = lineMatch[1] || '';
     entry.lineNumber = parseInt(lineMatch[2]);
-    entry.functionName = lineMatch[3] || '';
+    entry.functionName = lineMatch[3] || '<anonymous>';
     return entry;
   }
 

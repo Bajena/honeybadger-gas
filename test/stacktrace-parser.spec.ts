@@ -26,7 +26,7 @@ describe('StacktraceParser', () => {
       expect(entries[0].functionName).toEqual('myFunction');
       expect(entries[0].fileName).toEqual('Kod');
       expect(entries[0].lineNumber).toEqual(1);
-      expect(entries[1].functionName).toEqual('');
+      expect(entries[1].functionName).toEqual('<anonymous>');
       expect(entries[1].fileName).toEqual('Kod');
       expect(entries[1].lineNumber).toEqual(3);
     });
