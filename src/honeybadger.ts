@@ -1,5 +1,6 @@
 import { StacktraceParser, StacktraceEntry } from './stacktrace-parser';
 import { ErrorData } from './error-data';
+import { VERSION } from './version';
 
 export class Honeybadger {
   apiKey: string;
@@ -88,7 +89,7 @@ export class Honeybadger {
       notifier: {
         name: 'Honeybadger GAS Notifier',
         url: 'https://github.com/Bajena/honeybadger-gas',
-        version: '0.0.1'
+        version: VERSION
       },
       // Here's where you're exception's class, message tags and backtrace go.
       // The `class` and `message` attributes are what make up the error's "title" that we display in the UI.

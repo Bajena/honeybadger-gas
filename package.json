@@ -1,16 +1,17 @@
 {
   "name": "honeybadger-gas",
-  "version": "0.0.1",
+  "version": "10.0.0",
   "description": "Honeybadger client for Google Apps Scripts",
   "scripts": {
     "lint": "tslint --fix src/**/*.ts test/**/*.ts",
     "test": "jest",
     "build": "npm run lint && npm run test && rimraf dist && webpack && cpx src/appsscript.json dist",
-    "deploy": "npm run build && clasp push"
+    "deploy": "npm run build && clasp push",
+    "release": "npm deploy && ./release.sh"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/howdy39/gas-clasp-starter.git"
+    "url": "git+https://github.com/Bajena/honeybadger-gas.git"
   },
   "keywords": [
     "gas",
