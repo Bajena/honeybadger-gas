@@ -4,26 +4,18 @@ import { VERSION } from './version';
 
 export class Honeybadger {
   apiKey: string;
-  lockToNotify: boolean;
-  lockTime: number;
   private contextData: Object;
   private UrlFetchApp: GoogleAppsScript.URL_Fetch.UrlFetchApp;
 
   constructor(
     {
-      apiKey,
-      lockToNotify = true,
-      lockTime = 3000
+      apiKey
     }: {
       apiKey: string;
-      lockToNotify?: boolean;
-      lockTime?: number;
     },
     services: any
   ) {
     this.apiKey = apiKey;
-    this.lockToNotify = lockToNotify;
-    this.lockTime = lockTime;
 
     this.UrlFetchApp = services.UrlFetchApp;
     this.contextData = {};
