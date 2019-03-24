@@ -30,10 +30,7 @@ If you're whitelisting URLs accessible by UrlFetchApp make sure you add `"https:
 
 ```javascript
 Honeybadger.configure({
-  apiKey: '[ YOUR API KEY HERE ]',
-  // Honeybadger will use scriptLock (https://developers.google.com/apps-script/reference/lock/lock-service#getscriptlock) to prevent race conditions when multiple instances of script throw the same error.
-  // Pass false if you care about performance
-  lockToNotify: true,
+  apiKey: '[ YOUR API KEY HERE ]'
 });
 ```
 
