@@ -1,13 +1,13 @@
 {
   "name": "honeybadger-gas",
-  "version": "10.0.0",
+  "version": "11.0.0",
   "description": "Honeybadger client for Google Apps Scripts",
   "scripts": {
     "lint": "tslint --fix src/**/*.ts test/**/*.ts",
     "test": "jest",
     "build": "npm run lint && npm run test && rimraf dist && webpack && cpx src/appsscript.json dist",
     "deploy": "npm run build && clasp push",
-    "release": "npm deploy && ./release.sh"
+    "release": "yarn run deploy && ./release.sh"
   },
   "repository": {
     "type": "git",
