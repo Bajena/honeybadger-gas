@@ -1,6 +1,8 @@
 #!/bin/sh
 
 git checkout master &&
+git fetch origin master &&
+git rebase origin/master &&
 echo "Bumping version..." &&
 new_version=`yarn version --major --no-git-tag-version | grep -o "[0-9]*\.0\.0" | tail -1 | grep -o "[0-9]*"` &&
 echo "New version: $new_version. Updating version.ts" &&
